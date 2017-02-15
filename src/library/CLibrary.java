@@ -4,6 +4,7 @@ package library;
  */
 
 import com.sun.jna.Library;
+import com.sun.jna.Native;
 
 public interface CLibrary extends Library {
 
@@ -114,6 +115,7 @@ public interface CLibrary extends Library {
      * @return 返回细粒度分词，如果不能细分 返回空字符串""
      */
     String NLPIR_FinerSegment(String sline);
-    
+
+    public  static CLibrary Instance = (CLibrary)Native.loadLibrary("D:/NLPIR/NLPIR",CLibrary.class);
 
 }

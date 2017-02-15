@@ -10,7 +10,7 @@ public class Test {
 	public static void main(String[] args) {
 		Long start = System.currentTimeMillis();
 		SyncopateGraphAndSentence syncopateGraphAndSentence = new SyncopateGraphAndSentence(
-				"src/test.txt");//————将文档进行初步的分段和分句
+				"src/test1.txt");//————将文档进行初步的分段和分句
 		SyncopateWordsByIK synWordsByIK = new SyncopateWordsByIK(syncopateGraphAndSentence
 				.getSourceStr());//将文档进行分词，切分出不包含重复词元的字符串
 		String syncopateWordStr = synWordsByIK.getNoSameSegResult();//得到不包含重复词元的字符串

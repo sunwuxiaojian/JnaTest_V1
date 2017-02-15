@@ -1,5 +1,7 @@
 package com.autoabstract;
 
+import utils.FileUtil;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,7 +29,7 @@ public class SyncopateGraphAndSentence {
 
 	//————构造函数
 	public SyncopateGraphAndSentence(String filePath) {
-		String sourceStr = this.readNewsFile(filePath);
+		String sourceStr = FileUtil.readNewsFile(filePath);
 		this.setSourceStr(sourceStr);
 		/*String[] splitParagraph =*/ this.getParagraphs(this.getSourceStr());// 读取文件的时候用于分割段号—————按"\r\n"分割，splitParagraph[i]为第i+1段
 		int[][] paragraphInfo = this.getParagraphsInfo(paragraphStr);//————原来用的splitParagraph
@@ -39,46 +41,7 @@ public class SyncopateGraphAndSentence {
 		System.out.println("分句内容数组：" + this.getSentencesStr().length);		
 	}
 
-	/**
-	 * 读取文件并放到一个字符串中
-	 * 
-	 * @param sourceFilePath
-	 *            源文件路径
-	 * @return 返回一个字符串
-	 */
-	private String readNewsFile(String sourceFilePath) {
-		StringBuffer sourceStr = new StringBuffer();
-		File sourceFile = new File(sourceFilePath);
-		if (!sourceFile.isFile()) {
-			System.out.println("请确保你选择的是一个文件或者文件路径要正确！");
-			return "";
-		}
-		if (!sourceFile.exists()) {
-			System.out.println("您的文件路径不正确，请查找文件是否存在！");
-			return "";
-		}
-		try {
-			InputStreamReader isr = new InputStreamReader(new FileInputStream(
-					sourceFile), "UTF-8");
-			BufferedReader in = new BufferedReader(isr);
-			String lineStr = in.readLine();
-			while (lineStr != null) {
-				if (!lineStr.trim().equals("")) {//————段不为空，或不都是空格
-					if (lineStr != null) {
-						sourceStr.append(lineStr + "\r\n");// 读取的时添加\r\n是为了方便分段
-					}
-				}
-				lineStr = in.readLine();
-			}
-		} catch (UnsupportedEncodingException e1) {
-			e1.printStackTrace();
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return sourceStr.toString();
-	}
+
 
 	/**
 	 * 将读取得到的字符串分割出段落内容

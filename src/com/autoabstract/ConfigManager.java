@@ -10,7 +10,7 @@ public class ConfigManager {
 
 	public static final int MaxSynWords = 10;// 取的关键词个数
 
-	public static final int FinalSentencesCount = 5;// 取的句子总数
+	public static final int FinalSentencesCount = 10;// 取的句子总数
 
 	public static final double TitleWeight = 2;// 标题权重
 
